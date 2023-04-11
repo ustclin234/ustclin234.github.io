@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1>GitHub Pages Image Viewer</h1>
-	<img id="image" src="" width="400" height="300">
+	<img id="image" src="" width="1000" height="800">
 	<br>
 	<button onclick="prev()">Prev</button>
 	<button onclick="next()">Next</button>
@@ -14,7 +14,7 @@
 	var images = [];
 	var currentIndex = 0;
 
-	fetch('./imgs/')
+	fetch('https://raw.githubusercontent.com/ustclin234/randomImgViewer/master/imgs')
 	.then(response => response.json())
 	.then(data => {
 		data.forEach(function(item) {
