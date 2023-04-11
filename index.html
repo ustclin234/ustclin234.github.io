@@ -49,8 +49,7 @@
         data.forEach(function(item) {
           if (item.type === 'file' && item.name.endsWith('.png')) {
         images.push(item.download_url);
-            var num = parsetInt(item.name.split('.')[0]);
-            console.log(num);
+            var num = parseInt(item.name.split('.')[0]);
             if (num%2==0){evenimages.push(item.download_url);}
           else {oddimages.push(item.download_url);}
 
@@ -63,23 +62,24 @@
       });
         
     function zoushi() {
-        if (currentIndex === 0) {
-            currentIndex = 1;
-        } else {
-            currentIndex--;
-        }
+        // if (currentIndex == 0) {
+        //     currentIndex = 0;
+        // } else {
+        //     currentIndex++;
+        // }
         document.getElementById('image').src = evenimages[currentIndex];
     }
 
     function next() {
-        currentIndex = Math.floor(Math.random() * oddimages.length);
+        currentIndex = Math.floor(Math.random() * oddimages.length/2)*2+1;
+        console.log(currentIndex)
         
         var img = document.getElementById('image');
         img.onload = function() {
             img.width = this.width;
             img.height = this.height;
         };
-        img.src = images[currentIndex];
+        img.src = oddimages[currentIndex];
     }
     </script>
 </body>
