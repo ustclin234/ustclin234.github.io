@@ -38,12 +38,8 @@
 	}
 
 	function next() {
-		if (currentIndex === images.length - 1) {
-			currentIndex = 0;
-		} else {
-			currentIndex++;
-		}
-		document.getElementById('image').src = images[currentIndex];
+	    var randomIndex = Math.floor(Math.random() * images.length);
+	    document.getElementById('image').src = images[randomIndex];
 	}
 	</script>
 </body>
