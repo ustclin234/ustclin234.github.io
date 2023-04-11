@@ -70,13 +70,13 @@
             return image.match(/\/\d[13579]/);
         });
         // Select a random image from the filtered array
-        var randomIndex = Math.floor(Math.random() * oddImages.length);
+        currentIndex = Math.floor(Math.random() * oddImages.length);
         var img = document.getElementById('image');
         img.onload = function() {
             img.width = this.width;
             img.height = this.height;
         };
-        img.src = oddImages[randomIndex];
+        img.src = oddImages[currentIndex];
     }
     </script>
 </body>
