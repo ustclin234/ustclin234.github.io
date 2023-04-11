@@ -32,8 +32,8 @@
         <h1>Image Viewer</h1>
         <img id="image" src="">
         <div id="buttons">
-<!--             <button onclick="prev()">Prev</button> -->
             <button onclick="next()">Next</button>
+            <button onclick="zoushi()">Zoushi</button>
         </div>
     </div>
 
@@ -61,17 +61,17 @@
         console.error('Error fetching image list:', error);
       });
         
-//     function prev() {
-//         if (currentIndex === 0) {
-//             currentIndex = images.length - 1;
-//         } else {
-//             currentIndex--;
-//         }
-//         document.getElementById('image').src = images[currentIndex];
-//     }
+    function zoushi() {
+        if (currentIndex === 0) {
+            currentIndex = 1;
+        } else {
+            currentIndex--;
+        }
+        document.getElementById('image').src = evenimages[currentIndex];
+    }
 
     function next() {
-        currentIndex = Math.floor(Math.random() * images.length);
+        currentIndex = Math.floor(Math.random() * oddimages.length);
         
         var img = document.getElementById('image');
         img.onload = function() {
