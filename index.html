@@ -14,17 +14,20 @@
 	var images = [];
 	var currentIndex = 0;
 
-	fetch('https://raw.githubusercontent.com/ustclin234/randomImgViewer/main/imgs')
-	.then(response => response.json())
-	.then(data => {
-		data.forEach(function(item) {
-			if (item.type === 'file' && item.name.endsWith('.png')) {
-				images.push(item.download_url);
-			}
-		});
-		document.getElementById('image').src = images[currentIndex];
-	});
-
+	fetch('https://api.github.com/repos/ustclin234/randomImgViewer/contents/imgs')
+	  .then(response => response.json())
+	  .then(data => {
+	    const images = [];
+	    data.forEach(function(item) {
+	      if (item.type === 'file' && item.name.endsWith('.png')) {
+		images.push(item.download_url);
+	      }
+	    });
+	    document.getElementById('image').src = images[currentIndex];
+	  })
+	  .catch(error => {
+	    console.error('Error fetching image list:', error);
+	  });
 	function prev() {
 		if (currentIndex === 0) {
 			currentIndex = images.length - 1;
