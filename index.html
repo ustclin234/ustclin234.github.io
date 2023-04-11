@@ -14,7 +14,7 @@
 	var images = [];
 	var currentIndex = 0;
 
-	fetch('https://github.com/ustclin234/randomImgViewer/blob/main/imgs/')
+	fetch('https://raw.githubusercontent.com/ustclin234/randomImgViewer/master/imgs')
 	.then(response => response.json())
 	.then(data => {
 		data.forEach(function(item) {
