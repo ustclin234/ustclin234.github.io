@@ -14,7 +14,7 @@
 	var images = [];
 	var currentIndex = 0;
 
-	fetch('https://api.github.com/repos/ustclin234/randomImgViwer/imgs')
+	fetch('https://api.github.com/repos/ustclin234/randomImgViwer/imgs/')
 	.then(response => response.json())
 	.then(data => {
 		data.forEach(function(item) {
