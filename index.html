@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GitHub Pages Image Viewer</title>
+</head>
+<body>
+	<h1>GitHub Pages Image Viewer</h1>
+	<img id="image" src="" width="400" height="300">
+	<br>
+	<button onclick="prev()">Prev</button>
+	<button onclick="next()">Next</button>
+
+	<script>
+	var images = [];
+	var currentIndex = 0;
+
+	fetch('https://api.github.com/repos/ustclin234/randomImgViwer/imgs')
+	.then(response => response.json())
+	.then(data => {
+		data.forEach(function(item) {
+			if (item.type === 'file' && item.name.endsWith('.png')) {
+				images.push(item.download_url);
+			}
+		});
+		document.getElementById('image').src = images[currentIndex];
+	});
+
+	function prev() {
+		if (currentIndex === 0) {
+			currentIndex = images.length - 1;
+		} else {
+			currentIndex--;
+		}
+		document.getElementById('image').src = images[currentIndex];
+	}
+
+	function next() {
+		if (currentIndex === images.length - 1) {
+			currentIndex = 0;
+		} else {
+			currentIndex++;
+		}
+		document.getElementById('image').src = images[currentIndex];
+	}
+	</script>
+</body>
+</html>
