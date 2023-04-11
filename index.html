@@ -34,6 +34,7 @@
     var oddimages = [];
     var evenimages = [];
     var currentIndex = 0;
+    var totalIndex = 0;
 
     fetch('https://api.github.com/repos/ustclin234/randomImgViewer/contents/imgs')
       .then(response => response.json())
@@ -71,6 +72,7 @@
             img.width = this.width;
             img.height = this.height;
         };
+        totalIndex++;
         img.src = oddimages[currentIndex];
     }
     </script>
