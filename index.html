@@ -11,7 +11,7 @@
 	<button onclick="next()">Next</button>
 
 	<script>
-	var images = [];
+// 	var images = [];
 	var currentIndex = 0;
 
 	fetch('https://api.github.com/repos/ustclin234/randomImgViewer/contents/imgs')
@@ -28,6 +28,7 @@
 	  .catch(error => {
 	    console.error('Error fetching image list:', error);
 	  });
+		
 	function prev() {
 		if (currentIndex === 0) {
 			currentIndex = images.length - 1;
