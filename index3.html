@@ -67,7 +67,7 @@
     function next() {
         // Filter the images array based on filenames that start with an odd number
         var oddImages = images.filter(function(image) {
-            return image.match(/\/\d[13579]/);
+            return image.match(/\/\d[13579]\./);
         });
         // Select a random image from the filtered array
         currentIndex = Math.floor(Math.random() * oddImages.length);
