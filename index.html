@@ -49,7 +49,8 @@
 
           }
         });
-        document.getElementById('image').src = images[currentIndex];
+        currentIndex = Math.floor(Math.random() * oddimages.length/2)*2+1
+        document.getElementById('image').src = oddimages[currentIndex];
       })
       .catch(error => {
         console.error('Error fetching image list:', error);
