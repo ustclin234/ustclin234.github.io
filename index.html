@@ -49,7 +49,7 @@
 
           }
         });
-        document.getElementById('image').src = images[Math.floor(images.length)];
+        document.getElementById('image').src = images[currentIndex];
       })
       .catch(error => {
         console.error('Error fetching image list:', error);
