@@ -33,7 +33,7 @@
     var images = [];
     var oddimages = [];
     var evenimages = [];
-    var currentIndex = 0;
+    var currentIndex = Math.floor(Math.random() * 100)*2+1;
     var totalIndex = 0;
 
     fetch('https://api.github.com/repos/ustclin234/randomImgViewer/contents/imgs')
@@ -49,7 +49,7 @@
 
           }
         });
-        document.getElementById('image').src = images[Math.floor(images.length];
+        document.getElementById('image').src = images[currentIndex];
       })
       .catch(error => {
         console.error('Error fetching image list:', error);
