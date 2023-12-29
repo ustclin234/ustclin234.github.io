@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>强势经典案例</title>
+    <style>
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #video {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100vh;
+            display: block;
+            margin: auto;
+        }
+        #buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #buttons button {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+    var videos = [];
+    var oddVideos = [];
+    var evenVideos = [];
+    var currentIndex = Math.floor(Math.random() * 100) * 2 + 1;
+    var totalIndex = 0;
+
+    fetch('https://api.github.com/repos/ustclin234/randomImgViewer/contents/videos')
+        .then(response => response.json())
+        .then(data => {
+            data.sort((a, b) => parseInt(a.name.split('.')[0]) - parseInt(b.name.split('.')[0]));
+            data.forEach(function (item) {
+                if (item.type === 'file' && item.name.endsWith('.mp4')) {
+                    videos.push(item.download_url);
+                    var num = parseInt(item.name.split('.')[0]);
+                    if (num % 2 == 0) {
+                        evenVideos.push(item.download_url);
+                    } else {
+                        oddVideos.push(item.download_url);
+                    }
+                }
+            });
+            currentIndex = Math.floor(Math.random() * oddVideos.length / 2) * 2 + 1;
+            document.getElementById('video').src = oddVideos[currentIndex];
+        })
+        .catch(error => {
+            console.error('Error fetching video list:', error);
+        });
+
+    function hzoushi() {
+        document.getElementById('video').src = evenVideos[currentIndex];
+    }
+
+    function qzoushi() {
+        document.getElementById('video').src = oddVideos[currentIndex];
+    }
+
+    function next() {
+        currentIndex = Math.floor(Math.random() * oddVideos.length / 2) * 2 + 1;
+        console.log(currentIndex);
+
+        var video = document.getElementById('video');
+        video.onloadedmetadata = function () {
+            video.width = this.videoWidth;
+            video.height = this.videoHeight;
+        };
+        totalIndex++;
+        video.src = oddVideos[currentIndex];
+    }
+    </script>
+
+    <div id="container">
+        <h1>强势经典案例</h1>
+        <video id="video" controls></video>
+        <div id="buttons">
+            <button onclick="qzoushi()">前期走势</button>
+            <button onclick="next()">下个案例</button>
+            <button onclick="hzoushi()">后期走势</button>
+        </div>
+    </div>
+
+</body>
+</html>

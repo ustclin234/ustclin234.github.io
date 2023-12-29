@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Random MP4 Player</title>
+    <title>牛股回播</title>
     <style>
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         body {
             display: flex;
             justify-content: center;
@@ -11,7 +16,8 @@
             font-family: Arial, sans-serif;
         }
         #video-container {
-            width: 1280px;
+            width: 1800px;
+            height: 900px;
         }
         #video-container video {
             width: 100%;
@@ -28,13 +34,23 @@
             font-size: 16px;
             cursor: pointer;
         }
+        #buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #buttons button {
+            margin: 0 10px;
+        }
     </style>
 </head>
 <body>
     <div id="video-container">
         <video id="video" controls>
             <!-- Add your MP4 files here -->
-            <source src="https://pan.baidu.com/s/103FggE9RDmB4btuCb8yNNQ?pwd=rc1w" type="video/mp4">
+            <!-- <source src="https://pan.baidu.com/s/103FggE9RDmB4btuCb8yNNQ?pwd=rc1w" type="video/mp4"> -->
+            <source src="F:\BaiduSyncdisk\300投资资料\2.看盘复盘记录\牛股回顾\1.中国高科-央改-低位A区-单洗.mp4" type="video/mp4">
         </video>
         <div id="play-button">Play</div>
     </div>
@@ -58,5 +74,10 @@
             video.play();
         });
     </script>
+    <div id="container">
+        <div id="buttons">
+            <button onclick="next()"> NEXT </button>
+        </div>
+    </div>
 </body>
 </html>
