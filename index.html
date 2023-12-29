@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Random Video Player</title>
+    <title>牛股回播</title>
     <style>
         #container {
             display: flex;
@@ -30,36 +30,56 @@
 <body>
 
 <script>
-    var videoFiles = [
-        "1.中国高科-央改-低位A区-单洗.mp4",
-        "47.test.mp4"
-    ]; // Replace with your video file names
+    var videos = [];
+    var oddVideos = [];
+    var evenVideos = [];
+    var currentIndex = 0;
 
-    function playRandomVideo() {
-        if (videoFiles.length === 0) {
-            alert('No videos found.');
-            return;
-        }
+    fetch('https://api.github.com/repos/ustclin234/randomImgViewer/contents/videos')
+        .then(response => response.json())
+        .then(data => {
+            data.sort((a, b) => parseInt(a.name.split('.')[0]) - parseInt(b.name.split('.')[0]));
+            data.forEach(function (item) {
+                if (item.type === 'file' && item.name.endsWith('.mp4')) {
+                    videos.push(item.download_url);
+                    var num = parseInt(item.name.split('.')[0]);
+                    oddVideos.push(item.download_url)
+                }
+            });
+            currentIndex = Math.floor(Math.random() * oddVideos.length);
+            document.getElementById('video').src = oddVideos[currentIndex];
+        })
+        .catch(error => {
+            console.error('Error fetching video list:', error);
+        });
 
-        var randomIndex = Math.floor(Math.random() * videoFiles.length);
-        var videoFileName = videoFiles[randomIndex];
+    function hzoushi() {
+        document.getElementById('video').src = evenVideos[currentIndex];
+    }
 
-        // Set the video source and play it
+    function qzoushi() {
+        document.getElementById('video').src = oddVideos[currentIndex];
+    }
+
+    function next() {
+        currentIndex = (currentIndex + 1) % oddVideos.length;
         var video = document.getElementById('video');
-        video.src = 'F:/BaiduSyncdisk/300投资资料/2.看盘复盘记录/牛股回顾/' + videoFileName; // Assuming the videos are in a "videos" folder
+        video.onloadedmetadata = function () {
+            video.width = this.videoWidth;
+            video.height = this.videoHeight;
+        };
+        video.src = oddVideos[currentIndex];
         video.load();
-        video.play();
     }
 </script>
 
 <div id="container">
-    <h1>Random Video Player</h1>
+    <h1>牛股回播</h1>
     <video id="video" controls></video>
     <div id="buttons">
-        <button onclick="playRandomVideo()">Play Random Video</button>
+        <button onclick="next()">下个案例</button>
     </div>
 </div>
 
 </body>
 </html>
-// "F:\BaiduSyncdisk\300投资资料\2.看盘复盘记录\牛股回顾"

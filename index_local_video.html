@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Video Player</title>
+    <style>
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #video {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100vh;
+            display: block;
+            margin: auto;
+        }
+        #buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #buttons button {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    var videoFiles = [
+        "1.中国高科-央改-低位A区-单洗.mp4",
+        "47.test.mp4"
+    ]; // Replace with your video file names
+
+    function playRandomVideo() {
+        if (videoFiles.length === 0) {
+            alert('No videos found.');
+            return;
+        }
+
+        var randomIndex = Math.floor(Math.random() * videoFiles.length);
+        var videoFileName = videoFiles[randomIndex];
+
+        // Set the video source and play it
+        var video = document.getElementById('video');
+        video.src = 'F:/BaiduSyncdisk/300投资资料/2.看盘复盘记录/牛股回顾/' + videoFileName; // Assuming the videos are in a "videos" folder
+        video.load();
+        video.play();
+    }
+</script>
+
+<div id="container">
+    <h1>Random Video Player</h1>
+    <video id="video" controls></video>
+    <div id="buttons">
+        <button onclick="playRandomVideo()">Play Random Video</button>
+    </div>
+</div>
+
+</body>
+</html>
+// "F:\BaiduSyncdisk\300投资资料\2.看盘复盘记录\牛股回顾"
