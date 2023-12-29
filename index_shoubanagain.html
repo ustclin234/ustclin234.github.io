@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>强势经典案例</title>
+    <title>daily chances</title>
     <style>
         #container {
             display: flex;
@@ -31,41 +31,28 @@
 
     <script>
     var images = [];
-    var oddimages = [];
-    var evenimages = [];
-    var currentIndex = Math.floor(Math.random() * 100)*2+1;
-    var totalIndex = 0;
+    var currentIndex = 0;
 
-    fetch('https://api.github.com/repos/ustclin234/randomImgViewer/contents/imgs')
+    fetch('https://api.github.com/repos/ustclin234/qsshouban/contents/imgs')
       .then(response => response.json())
       .then(data => {
         data.sort((a,b) => parseInt(a.name.split('.')[0]) - parseInt(b.name.split('.')[0]));
+        console.log(data);
         data.forEach(function(item) {
           if (item.type === 'file' && item.name.endsWith('.png')) {
         images.push(item.download_url);
-            var num = parseInt(item.name.split('.')[0]);
-            if (num%2==0){evenimages.push(item.download_url);}
-          else {oddimages.push(item.download_url);}
-
           }
         });
-        currentIndex = Math.floor(Math.random() * oddimages.length/2)*2+1
-        document.getElementById('image').src = oddimages[currentIndex];
+        currentIndex = Math.floor(Math.random() * images.length);
+        document.getElementById('image').src = images[currentIndex];
       })
       .catch(error => {
         console.error('Error fetching image list:', error);
       });
         
-    function hzoushi() {
-        document.getElementById('image').src = evenimages[currentIndex];
-    }
-
-    function qzoushi() {
-        document.getElementById('image').src = oddimages[currentIndex];
-    }
 
     function next() {
-        currentIndex = Math.floor(Math.random() * oddimages.length/2)*2+1;
+        currentIndex = Math.floor(Math.random() * images.length);
         console.log(currentIndex)
         
         var img = document.getElementById('image');
@@ -73,18 +60,15 @@
             img.width = this.width;
             img.height = this.height;
         };
-        totalIndex++;
-        img.src = oddimages[currentIndex];
+        img.src = images[currentIndex];
     }
     </script>
 
     <div id="container">
-        <h1>强势经典案例</h1>
+        <h1>daily chances</h1>
         <img id="image" src="">
         <div id="buttons">
-            <button onclick="qzoushi()">前期走势</button>
-            <button onclick="next()">下个案例</button>
-            <button onclick="hzoushi()">后期走势</button>
+            <button onclick="next()"  style="font-size:30px">Next</button>
         </div>
     </div>
 

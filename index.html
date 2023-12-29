@@ -1,86 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>牛股回播</title>
+    <title>牛股回播、首板回顾、经典再现</title>
     <style>
         #container {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        #video {
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 100vh;
-            display: block;
-            margin: auto;
-        }
         #buttons {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: center;
             margin-top: 20px;
         }
         #buttons button {
-            margin: 0 10px;
+            margin: 20px 10px;
         }
     </style>
 </head>
 <body>
 
 <script>
-    var videos = [];
-    var oddVideos = [];
-    var evenVideos = [];
-    var currentIndex = 0;
-
-    fetch('https://api.github.com/repos/ustclin234/randomImgViewer/contents/videos')
-        .then(response => response.json())
-        .then(data => {
-            data.sort((a, b) => parseInt(a.name.split('.')[0]) - parseInt(b.name.split('.')[0]));
-            data.forEach(function (item) {
-                if (item.type === 'file' && item.name.endsWith('.mp4')) {
-                    videos.push(item.download_url);
-                    var num = parseInt(item.name.split('.')[0]);
-                    oddVideos.push(item.download_url)
-                }
-            });
-            currentIndex = Math.floor(Math.random() * oddVideos.length);
-            document.getElementById('video').src = oddVideos[currentIndex];
-        })
-        .catch(error => {
-            console.error('Error fetching video list:', error);
-        });
-
-    function hzoushi() {
-        document.getElementById('video').src = evenVideos[currentIndex];
+    function niugureplay() {
+        window.location.href = 'index_niugureplay.html';
     }
-
-    function qzoushi() {
-        document.getElementById('video').src = oddVideos[currentIndex];
+    function shoubanagain() {
+        window.location.href = 'index_shoubanagain.html';
     }
-
-    function next() {
-        // currentIndex = (currentIndex + 1) % oddVideos.length;
-        currentIndex = Math.floor(Math.random() * oddVideos.length);
-        var video = document.getElementById('video');
-        video.onloadedmetadata = function () {
-            video.width = this.videoWidth;
-            video.height = this.videoHeight;
-        };
-        video.src = oddVideos[currentIndex];
-        video.load();
+    function jingdianzaixian() {
+        window.location.href = 'index_jingdianzaixian.html';
     }
 </script>
-
 <div id="container">
-    <h1>牛股回播</h1>
-    <video id="video" controls></video>
+    <h1>牛股回播、首板回顾、 经典再现</h1>
+    <!-- <video id="video" controls></video> -->
     <div id="buttons">
-        <button onclick="next()">下个案例</button>
+        <button onclick="niugureplay()" style="font-size:50px">牛股回播</button>
+        <button onclick="shoubanagain()" style="font-size:50px">首板回顾</button>
+        <button onclick="jingdianzaixian()" style="font-size:50px">经典再现</button>
     </div>
-</div>
-
 </body>
 </html>
