@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random MP4 Player</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        #video-container {
+            width: 640px;
+        }
+        #video-container video {
+            width: 100%;
+        }
+        #play-button {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 12px 24px;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <video id="video" controls>
+            <!-- Add your MP4 files here -->
+            <source src="video1.mp4" type="video/mp4">
+            <source src="video2.mp4" type="video/mp4">
+            <source src="video3.mp4" type="video/mp4">
+        </video>
+        <div id="play-button">Play</div>
+    </div>
+
+    <script>
+        var video = document.getElementById('video');
+        var playButton = document.getElementById('play-button');
+
+        // Hide the play button when video is playing
+        video.addEventListener('play', function() {
+            playButton.style.display = 'none';
+        });
+
+        // Show the play button when video ends
+        video.addEventListener('ended', function() {
+            playButton.style.display = 'block';
+        });
+
+        // Play the video when the play button is clicked
+        playButton.addEventListener('click', function() {
+            video.play();
+        });
+    </script>
+</body>
+</html>
