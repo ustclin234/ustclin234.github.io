@@ -62,7 +62,8 @@
     }
 
     function next() {
-        currentIndex = (currentIndex + 1) % oddVideos.length;
+        // currentIndex = (currentIndex + 1) % oddVideos.length;
+        currentIndex = Math.floor(Math.random() * oddVideos.length);
         var video = document.getElementById('video');
         video.onloadedmetadata = function () {
             video.width = this.videoWidth;
