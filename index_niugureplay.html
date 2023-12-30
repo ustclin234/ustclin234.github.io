@@ -35,7 +35,7 @@
     var evenVideos = [];
     var currentIndex = 0;
 
-    fetch('https://api.github.com/repos/ustclin234/ustclin.github.io/contents/niugureplay')
+    fetch('https://api.github.com/repos/ustclin234/ustclin234.github.io/contents/niugureplay')
         .then(response => response.json())
         .then(data => {
             data.sort((a, b) => parseInt(a.name.split('.')[0]) - parseInt(b.name.split('.')[0]));
