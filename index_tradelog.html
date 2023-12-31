@@ -36,7 +36,7 @@
     var currentIndex = 0;
     var totalIndex = 0;
 
-    fetch('https://api.github.com/repos/ustclin234/ustclin234.github.io/contents/imgs')
+    fetch('https://api.github.com/repos/ustclin234/ustclin234.github.io/contents/tradelog')
       .then(response => response.json())
       .then(data => {
         data.sort((a,b) => parseInt(a.name.split('.')[0]) - parseInt(b.name.split('.')[0]));
