@@ -33,13 +33,17 @@
     var images = [];
     var currentIndex = 0;
 
-    fetch('json_files/qsshouban.json')
+    // fetch('https://api.github.com/repos/ustclin234/ustclin234.github.io/contents/qsshouban')
       .then(response => response.json())
       .then(data => {
+        data.sort((a,b) => parseInt(a.name.split('.')[0]) - parseInt(b.name.split('.')[0]));
         console.log(data);
-        images = data.images.map(file=>'qsshouban/' + file);
+        data.forEach(function(item) {
+          if (item.type === 'file' && item.name.endsWith('.png')) {
+        images.push(item.download_url);
+          }
+        });
         currentIndex = Math.floor(Math.random() * images.length);
-        // document.getElementById('image').src = images[currentIndex];
         document.getElementById('image').src = images[currentIndex];
       })
       .catch(error => {
