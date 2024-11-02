@@ -36,7 +36,7 @@
     fetch('json_files/qsshouban.json')
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         images = data.images.map(file=>'qsshouban/' + file);
         currentIndex = Math.floor(Math.random() * images.length);
         // document.getElementById('image').src = images[currentIndex];
