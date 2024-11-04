@@ -51,7 +51,8 @@
         // console.log(oddimages);
         // console.log(evenimages) ;
         
-        currentIndex = Math.floor(Math.random() * images.length);
+        currentIndex = Math.floor(oddimages.length)-1;
+        console.log('num_items: ', oddimages.length, currentIndex);
         // document.getElementById('image').src = images[currentIndex];
         document.getElementById('image').src = images[currentIndex];
       })
