@@ -38,7 +38,8 @@
       .then(data => {
         // console.log(data);
         images = data.images.map(file=>'qsshouban/' + file);
-        currentIndex = Math.floor(Math.random() * images.length);
+        // currentIndex = Math.floor(Math.random() * images.length);
+        currentIndex = Math.floor(images.length);
         // document.getElementById('image').src = images[currentIndex];
         document.getElementById('image').src = images[currentIndex];
       })
