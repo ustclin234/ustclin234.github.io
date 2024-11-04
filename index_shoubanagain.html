@@ -39,8 +39,8 @@
         // console.log(data);
         images = data.images.map(file=>'qsshouban/' + file);
         // currentIndex = Math.floor(Math.random() * images.length);
-        console.log("num_items: ", images.length);
         currentIndex = Math.floor(images.length);
+        console.log("num_items: ", images.length, currentIndex);
         // document.getElementById('image').src = images[currentIndex];
         document.getElementById('image').src = images[currentIndex];
       })
